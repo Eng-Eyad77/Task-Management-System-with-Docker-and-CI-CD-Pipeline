@@ -1,107 +1,112 @@
 
-# Testing Project
-
-Team Members:
-
-Eyad Adnan Makkawi – 444003279 
-
-Enad Abdulmohsen Alharbi – 444002681 
-
-Turki Abdullah Alotaibi – 444002785 
-
-Jawad Ayman Alharbi – 444004266
-
-Jawad Khaled Alotaibi – 444003256
+# ✅ Task-Management-System
 
 
+---
 
-## Overview
-This project is a Spring Boot application that performs CRUD operations for a task management system. It is packaged using Docker and managed through a Jenkins CI/CD pipeline.
+## 📌 Project Overview
 
-## Project Structure
-- **src/main/java**: Contains the Java source code for the Spring Boot application.
-- **src/main/resources/application.properties**: Configuration file for the Spring Boot application.
-- **Jenkinsfile**: Jenkins pipeline configuration to automate build, test, packaging, and deployment processes.
-- **Dockerfile**: Docker configuration to package the application in a Docker container.
+This project is a web-based **Spring Boot MVC** application for managing tasks. It allows users to perform full **CRUD** operations on tasks, including setting their priority and status. The project integrates **JUnit testing**, **Jenkins CI/CD pipelines**, and **Docker containerization** for efficient deployment.
 
-## Requirements
-To run this project, you need the following tools installed:
-- **Java 17**: Required to build and run the Spring Boot application.
-- **Maven**: Required to manage dependencies and build the project.
-- **Docker**: Required to containerize and run the application.
-- **Jenkins**: Required for CI/CD automation (optional if not using Jenkins).
+---
 
-## Setup and Installation
+## 🧩 Features
 
-### 1. Clone the repository
+- Create, update, and delete tasks.
+- Set task status and priority (Low, Medium, High).
+- View all tasks in a task list view.
+- MVC structure using Spring Boot.
+- Fully tested using **JUnit**.
+- Jenkins pipeline for CI/CD automation.
+- Packaged and deployed using **Docker**.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Backend:** Java 17, Spring Boot
+- **Frontend:** Thymeleaf (HTML views)
+- **Build Tool:** Maven
+- **Testing:** JUnit
+- **CI/CD:** Jenkins
+- **Containerization:** Docker
+
+---
+
+## 📂 Core Components
+
+- **Model:** `Task` class representing the entity.
+- **Repository:** `TaskRepository` and `TaskRepositoryInterface` using Spring Data JPA.
+- **Service:** `TaskService` for business logic.
+- **Controller:** `TaskController` handling user interactions.
+- **Views:** HTML pages for task creation, editing, setting priority, and listing.
+
+---
+
+## 🧪 Testing Strategy
+
+- **Unit Testing:** Validates each method (getters/setters, CRUD operations).
+- **Integration Testing:** Confirms components interact as expected.
+- **RTM (Requirement Traceability Matrix):** Maps each requirement to its corresponding test cases.
+- **Automation:** All tests are integrated into Jenkins pipeline and run automatically.
+
+---
+
+## 🧬 Example Test Cases
+
+| Test Case ID | Scenario | Input | Expected Output | Status |
+|--------------|----------|--------|------------------|--------|
+| TC-01 | Test getter/setter for `id` | id = 1 | 1 | ✅ Pass |
+| TC-06 | Set task priority | High | High | ✅ Pass |
+| TC-10 | Delete task by ID | id = 1 | Task deleted | ✅ Pass |
+
+---
+
+## 🔁 Jenkins Pipeline Stages
+
+1. **Checkout** – Clone from GitHub repository  
+2. **Build** – Compile the project with Maven  
+3. **Test** – Run JUnit test cases  
+4. **Package** – Generate `.jar` file  
+5. **Docker Build** – Create Docker image  
+6. **Deployment** – Deploy app to port `8081` using Docker
+
+---
+
+## 🐳 Docker Deployment Commands
+
 ```bash
-git clone https://github.com/Eng-Eyad77/Testing-Project.git
-cd Testing-Project
+docker stop myapp || true
+docker rm myapp || true
+docker run -d --name myapp -p 8081:8080 myapp:latest
 ```
 
-### 2. Build the project using Maven
-Compile and package the application:
-```bash
-mvn clean compile
-mvn package -DskipTests=false
-```
+---
 
-### 3. Run the application with Docker
-Build the Docker image and run the container:
-```bash
-docker build -t mvc-image .
-docker run -d --name spring-boot-app -p 8081:8081 mvc-image
-```
+## 📌 Application Requirements
 
-### 4. Access the application
-After running the container, the application should be accessible at:
-```
-http://localhost:8081
-```
+| Req ID | Description |
+|--------|-------------|
+| REQ-01 | Task model with: id, title, description, status, priority |
+| REQ-02 | View list of tasks |
+| REQ-03 | Create new tasks |
+| REQ-04 | Edit tasks |
+| REQ-05 | Delete tasks |
+| REQ-06 | Set task priority (Low, Medium, High) |
 
-If you are deploying on a server, replace `localhost` with your server IP.
+---
 
-## Jenkins Pipeline
+## 📦 Packaging
 
-The project includes a `Jenkinsfile` that defines a pipeline with the following stages:
-1. **Checkout**: Pulls the latest code from the `main` branch.
-2. **Build**: Compiles the code using Maven.
-3. **Test**: Runs unit tests.
-4. **Package**: Packages the application as a JAR file.
-5. **Build Docker Image**: Creates a Docker image for the application.
-6. **Deploy Docker Container**: Deploys the Docker container to the specified port (8081).
+- Packaged into `.jar` via Maven.
+- Dockerized with a two-stage Dockerfile (build + runtime).
+- Port `8081` exposed and mapped in container.
 
-### Notifications
-The pipeline is configured to send email notifications to `four.engineers2025@gmail.com` upon success or failure of the pipeline execution.
+---
 
-### Jenkins Configuration
-To set up Jenkins for this project:
-1. Add a new pipeline job in Jenkins.
-2. Use the GitHub repository URL: `https://github.com/Eng-Eyad77/Testing-Project.git`
-3. Ensure that your Jenkins has Docker and Maven installed and configured.
-4. Set up SMTP settings in Jenkins to enable email notifications.
+## 👥 Team Members
 
-## Dockerfile Details
-The Dockerfile is structured in two stages:
-1. **Build Stage**: Uses a Maven image to build the project and create a JAR file.
-2. **Runtime Stage**: Uses a lightweight JDK image to run the application.
-
-### Ports
-The application is configured to run on **port 8081**, which is exposed by Docker and mapped to the host.
-
-### Environment Configuration
-The `application.properties` file configures the application to run on `0.0.0.0:8081`.
-
-## Troubleshooting
-If you encounter issues:
-- Ensure Docker and Jenkins have the necessary permissions.
-- Check the Jenkins console for pipeline logs.
-- Confirm Docker and Jenkins services are running properly on your server.
-
-
-
-## Contact
-For questions or feedback, please reach out to us on:
-
-Email: four.engineers2025@gmail.com
-
+- Eyad Adnan Maccawy
+- Enad Abdulmohsen Alharbi
+- Turki Abdullah Alotaibi
+- Jawad Khaled Alotaibi
